@@ -1,14 +1,20 @@
 <template>
   <div id="app">
+    <header>
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/keyword">Keyword Search</RouterLink>
+      </nav>
+    </header>
+
+    <main>
+      <RouterView></RouterView>  
+    </main>
   </div>
 </template>
 
 <script>
-
-export default {
-  
-
-};
+export default {};
 </script>
 
 <style>
@@ -18,5 +24,25 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+header {
+  height: 100px;
+  background: rgb(149, 168, 103);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid black;
+}
+
+main {
+  padding: 8px;
 }
 </style>
