@@ -4,7 +4,7 @@
       <img alt="justice league" src="./assets/justiceleague.jpg">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink></RouterLink>
+        <RouterLink to="/movies">Movies</RouterLink>
       </nav>
     </header>
 
