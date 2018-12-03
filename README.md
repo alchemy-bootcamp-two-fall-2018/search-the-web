@@ -1,0 +1,32 @@
+# search-the-web
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+// key: 1e6CTnRmAHItWG291mCd3w,
+// secret: l6m4KwU0vDlqvjxMiIwMQvtnGcIHneEiJn7xRmz9ls
