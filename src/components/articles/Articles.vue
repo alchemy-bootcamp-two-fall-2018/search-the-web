@@ -3,7 +3,7 @@
     <h2>Search Articles</h2>
     <ArticleSearch />
     <Article />
-    <p></p>
+    <p>{{articles.articles}}</p>
   </section>
 </template>
 
@@ -28,8 +28,10 @@ export default {
     }
   },
   created() {
-    this.articles = articleApi.getArticles();
-    console.log(this.articles);
+    articleApi.getArticles().then(articles => {
+      console.log(articles);
+      this.articles = articles;
+    });
   }
 };
 </script>
