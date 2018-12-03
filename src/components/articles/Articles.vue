@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Articles</h2>
-        <p>{{articles}}</p>
+        <p>{{articles.articles}}</p>
     </div>
 </template>
 
@@ -26,7 +26,10 @@ export default {
     }
   },
   created() {
-    this.articles = articleApi.getArticles();
+    articleApi.getArticles().then(articles => {
+      console.log(articles);
+      this.articles = articles;
+    });
   },
 };
 </script>
