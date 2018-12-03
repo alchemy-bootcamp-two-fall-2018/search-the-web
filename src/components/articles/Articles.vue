@@ -1,11 +1,34 @@
 <template>
-    <h3>Items</h3>
+    <div>
+        <h2>Articles</h2>
+        <p>{{articles}}</p>
+    </div>
 </template>
 
 <script>
-export default {
+import ArticleSearch from './ArticleSearch';
+import Article from './Article';
+import articleApi from '../../services/api.js';
 
-}
+export default {
+  data() {
+    return {
+      articles: null
+    };
+  },
+  components: {
+    Article,
+    ArticleSearch
+  },
+  methods: {
+    getArticles() {
+      articleApi.getArticles();
+    }
+  },
+  created() {
+    this.articles = articleApi.getArticles();
+  },
+};
 </script>
 
 <style>

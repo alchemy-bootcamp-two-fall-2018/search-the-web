@@ -1,12 +1,9 @@
 <template>
-    <h2>Home</h2>
+    <div id="home">
+        <h2>Home</h2>
+        <RouterLink to="/articles">See Articles</RouterLink>
+    </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style>
 
