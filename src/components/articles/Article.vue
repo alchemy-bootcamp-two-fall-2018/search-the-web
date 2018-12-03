@@ -1,30 +1,20 @@
 <template>
-  <section>
-    <h2>Articles</h2>
-    <div class="search-container">
-      <ul v-if="articles">
-        <Article v-for="(article, i) in articles"
-          :key="i"
-          :article="article"
-        />
-      </ul>
-
-    </div>
-  </section>
+  <li>
+    <!-- <RouterLink :to="`/articles/${article.author}`" >
+      {{articles.author}} wrote an article.
+    </RouterLink> -->
+  </li>
 </template>
 
 <script>
-import Article from './Article'; 
 
 export default {
-  components: {
-    Article,
-
+  props: {
+    article: Object
   }
 };
 
 </script>
-
 
 <style>
 
