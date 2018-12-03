@@ -1,8 +1,7 @@
 <template>
   <li>
-    <!-- <RouterLink :to="`/articles/${article.author}`" >
-      {{articles.author}} wrote an article.
-    </RouterLink> -->
+      <p><strong>{{article.author}}</strong></p>
+      <p>{{article.title}}</p>
   </li>
 </template>
 

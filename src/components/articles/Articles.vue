@@ -2,8 +2,13 @@
   <section>
     <h2>Search Articles</h2>
     <ArticleSearch />
-    <Article />
-    <p>{{articles.articles}}</p>
+    <ul>
+    <Article v-for="(article, i) in articles"
+          :key="i"
+          :article="article"
+          />
+    </ul>
+    <!-- <p>{{articles}}</p> -->
   </section>
 </template>
 
@@ -30,7 +35,7 @@ export default {
   created() {
     articleApi.getArticles().then(articles => {
       console.log(articles);
-      this.articles = articles;
+      this.articles = articles.articles;
     });
   }
 };
