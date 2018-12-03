@@ -1,7 +1,8 @@
 <template>
   <section>
-    <h2 class="welcome">Welcome!</h2>
+    <h2 class="welcome">Welcome Home!</h2>
     <div>
+      <RouterLink to="/articles">See Articles</RouterLink>
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmrDSTJbrQNEjGHPvlW6gcyVv_44bxo5qQAA-6QCFPwv-Squb1" alt="">
     </div>
   </section>
