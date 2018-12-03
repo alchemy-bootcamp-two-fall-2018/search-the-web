@@ -1,10 +1,10 @@
 <template>
   <div>
-    
+
     <header>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/budget">Budget KPM</RouterLink>
+        <RouterLink to="/budget-kpm">Budget KPM</RouterLink>
       </nav>
     </header>
 
