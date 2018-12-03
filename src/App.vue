@@ -1,5 +1,15 @@
 <template>
-  
+  <div class="app">
+    <header>
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/articles">Articles</RouterLink>
+      </nav>
+    </header>
+    <main>
+      <RouterView></RouterView>
+    </main>
+  </div>
 </template>
 
 <script>
