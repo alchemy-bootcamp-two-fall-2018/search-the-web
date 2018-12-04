@@ -1,11 +1,11 @@
 <template>
   <section class="newsstories">
     <h2>News Stories</h2>
-     <NewsStoriesSearch :onSearch="handleSearch" :search="search"/>
+     <!-- <NewsStoriesSearch :onSearch="handleSearch" :search="search"/>
     
-     <div class="search-container">
+     <div class="search-container"> -->
       <ul v-if="newsstories">
-        <NewsStories v-for="(newsstory, i) in newsstories"
+        <NewsStory v-for="(newsstory, i) in newsstories"
           :key="i"
           :newsstory="newsstory"
         />
@@ -15,7 +15,7 @@
 </template>
 <script>
 import api from '../../services/api';
-// import NewsStoriesSearch from './NewsStoriesSearch';
+import NewsStory from './NewsStory';
 
 export default {
     data() {
@@ -25,20 +25,16 @@ export default {
         };
     },
     components: {
-        // NewsStoriesSearch,
+        NewsStory  
     },
     created() {
         this.searchNewsStories();
     },
     methods: {
-        handleSearch(search) {
-            this.search = search || '';
-            this.searchNewsStories();
-        },
         searchNewsStories() {
             api.getNews(this.search)
                 .then(response => {
-                    this.newsstories = response.results;
+                    this.newsstories = response.articles;
                 });
         }
     }
