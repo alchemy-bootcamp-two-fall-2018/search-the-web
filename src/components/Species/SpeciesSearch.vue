@@ -16,6 +16,13 @@ export default {
       keyword: this.search || ''
     }; 
   },
+  watch: {
+    search(newSearch) {
+      if(this.keyword !== newSearch) {
+        this.keyword = newSearch;
+      }
+    }
+  },
   methods: {
     handleSubmit() {
       this.$router.push({

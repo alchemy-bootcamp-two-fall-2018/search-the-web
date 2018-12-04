@@ -1,7 +1,7 @@
 <template>
   <li> 
-    <RouterLink :to="`/species/${species.id}`">
-    {{species.name}} is a {{species.classification}} and is from {{species.homeworld}}
+    <RouterLink :to="`/species/${specie.id}`">
+    {{specie.name}} is a {{specie.classification}} and is from {{specie.homeworld}}
     </RouterLink>
   </li>
 </template>
