@@ -4,7 +4,11 @@
 
         <KPMSSearch :onSubmit="handleSubmit"/>
 
-        <KPM :kpms="kpms"></KPM>
+        <div v-show="error"><br>
+          {{error}}
+        </div>
+
+        <KPM :kpms="kpms" v-if="!error"></KPM>
     </section>
 </template>
 
@@ -17,8 +21,15 @@ import KPMSSearch from './KPMSSearch';
 export default {
   data() {
     return {
-      kpms: []
+      kpms: [],
+      route: this.$route,
+      error: null
     };
+  },
+  watch: {
+    route(newRoute) {
+      api.getKpm(newRoute.query.fiscal_year).then(console.log);
+    }
   },
   created() {
     api.getKpm().then(kpms => this.kpms = kpms.results);
@@ -29,11 +40,15 @@ export default {
   },
   methods: {
     handleSubmit(keyword) {
+      this.error = null;
       this.$router.push({ query: {
         fiscal_year: encodeURIComponent(keyword.fyear)
       } });
   
-      api.getKpm(keyword.fyear).then(kpms => this.kpms = kpms.results);
+      api.getKpm(keyword.fyear)
+        .then(kpms => this.kpms = kpms.results)
+        .catch(err => this.error = err.message);
+      this.route = this.$route;
     }
   }
 
