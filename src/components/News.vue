@@ -7,7 +7,7 @@
 
 <script>
 import api from '../services/api';
-import Article from './Article';
+// import Article from './Article';
 
 
 export default {
@@ -18,7 +18,7 @@ export default {
     },
 
     components: {
-        Article
+        // Article
     },
 
     created() {
