@@ -20,7 +20,7 @@
       <ul v-if="news">
         <NewsStory v-for="(newsStory, i) in news"
           :key="i"
-          :news="news"
+          :newsStory="newsStory"
         />
       </ul>
     </div>
@@ -98,8 +98,9 @@ export default {
 
       api.getNews(this.search, this.page)
         .then(response => {
-          this.news = response.results;
-          this.total = response.count;
+          console.log('results', response.results);
+          this.news = response.articles;
+          this.total = response.totalResults;
           this.loading = false;
         })
         .catch(err => {
