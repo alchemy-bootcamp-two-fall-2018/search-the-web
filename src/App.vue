@@ -4,6 +4,8 @@
       <img src="./assets/logo.png">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/articles">Articles</RouterLink>
+
 
       </nav>
     </header>
@@ -17,9 +19,7 @@
 
 <script>
 
-export default {
-
-};
+export default {};
 </script>
 
 <style scoped>

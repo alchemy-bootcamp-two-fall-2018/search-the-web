@@ -6,10 +6,8 @@
 
     <Loader :loading="loading"/>
 
-    <p>
-      <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
-      Searching for &quot;{{ search }}&quot; - found {{total}} - page {{page}} of {{totalPages}}
-      <button @click="handlePage(1)" :disabled="totalPages === page">Next</button>
+    <p v-if="search" >
+      Searching for &quot;{{ search }}&quot;
     </p>
 
     <pre v-show="error" class="error">
@@ -17,7 +15,7 @@
     </pre>
 
     <div class="search-container">
-      <ul v-if="people">
+      <ul v-if="articles">
         <Article v-for="(article, i) in articles"
             :key="i"
             :article="article"
@@ -33,16 +31,18 @@ import api from '../../services/api.js';
 import Article from './Article';
 import ArticleSearch from './ArticleSearch';
 import Loader from './Loader';
+
 export default {
   data() {
+    const search = this.$route.query.search;
     return {
-      people: null,
+      articles: null,
       loading: false,
       error: null,
       search: decodeURI(this.$route.query.search),
-      page: decodeURIComponent(this.$route.query.page) || 1,
-      total: 0,
-      perPage: 10
+      page: decodeURIComponent(search),
+      total: 0
+      // perPage: 10
     };
   },
   components: {
@@ -51,55 +51,50 @@ export default {
     Loader
   },
   created() {
-    this.searchPeople();
+    this.searchArticles();
   },
-  computed: {
-    totalPages() {
-      return Math.ceil(this.total / this.perPage);
-    }
-  },
+  // computed: {
+  //   totalPages() {
+  //     return Math.ceil(this.total / this.perPage);
+  //   }
+  // },
   watch: {
     $route(newRoute, oldRoute) {
       const newSearch = newRoute.query.search;
       const oldSearch = oldRoute.query.search;
-      let newPage = newRoute.query.page;
-      const oldPage = oldRoute.query.page;
-      if(newSearch === oldSearch && newPage === oldPage) return;
-      if(newSearch !== oldSearch) {
-        newPage = 1;
-      }
-      this.search = decodeURIComponent(newSearch);
-      this.page = newPage;
-      this.searchPeople();
+      // let newPage = newRoute.query.page;
+      // const oldPage = oldRoute.query.page;
+      // if(newSearch === oldSearch && newPage === oldPage) return;
+      if(newSearch === oldSearch) return;
+
+      this.handleSearch(decodeURIComponent(newSearch));
     }
   },
+   
   methods: {
     handleSearch(search) {
       this.search = search || '';
-      this.page = 1;
-      this.recordPage();
-      this.searchPeople();
+      this.searchArticles();
     },
-    handlePage(increment) {
-      this.page += increment;
-      this.recordPage();
-    },
-    recordPage() {
-      this.$router.push({
-        query: {
-          search: encodeURIComponent(this.search),
-          page: this.page
-        }
-      });
-    },
-    searchArticle() {
+    // handlePage(increment) {
+    //   this.page += increment;
+    //   this.recordPage();
+    // },
+    // recordPage() {
+    //   this.$router.push({
+    //     query: {
+    //       search: encodeURIComponent(this.search),
+    //       // page: this.page
+    //     }
+      
+    searchArticles() {
       this.loading = true;
       this.error = null;
 
-      api.getArticle(this.search, this.page)
+      api.getArticles(this.search)
         .then(response => {
-          this.articles = response.results;
-          this.total = response.count;
+          this.articles = response.articles;
+          // this.total = response.count;
           this.loading = false;
         })
         .catch(err => {

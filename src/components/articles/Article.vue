@@ -1,8 +1,7 @@
 <template>
   <li>
-    <RouterLink :to="`/articles/${articles.title}`">
-    {{article.title}} by {{articles.author}}
-    </RouterLink>
+    
+   {{article.title}} by {{article.author}}
   </li>
 </template>
 
@@ -10,7 +9,7 @@
 
 export default {
   props: {
-    person: Object
+    article: Object
   }
 };
 </script>
