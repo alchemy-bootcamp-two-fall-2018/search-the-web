@@ -28,7 +28,7 @@ export default {
     return {
       articles: null,
       loading: false,
-      news: decodeURIComponent(this.$route.query.news),
+      q: decodeURIComponent(this.$route.query.q),
     };
   },
   components: {
@@ -38,10 +38,10 @@ export default {
   },
   watch: {
     $route(newRoute, oldRoute) {
-      const newSearch = newRoute.query.news;
-      const oldSearch = oldRoute.query.news;
+      const newSearch = newRoute.query.q;
+      const oldSearch = oldRoute.query.q;
       if(newSearch === oldSearch) return;
-      this.news = decodeURIComponent(newSearch);
+      this.q = decodeURIComponent(newSearch);
       this.searchArticles();
     }  
   },
@@ -49,13 +49,13 @@ export default {
       getArticles() {
         articlesApi.getArticles();
       },
-      handleSearch(news) {
-        this.news = news || '';
+      handleSearch(q) {
+        this.q = q || '';
         this.searchArticles();
     },
     searchArticles() {
     this.loading = true;
-    articlesApi.getArticles(this.news)
+    articlesApi.getArticles(this.q)
     .then(response => {
         this.articles = response.articles;
         this.loading = false;
