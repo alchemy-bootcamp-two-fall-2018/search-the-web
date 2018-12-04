@@ -10,6 +10,15 @@
 
 <script>
 export default {
+  data() {
+    return {
+      keyword: this.q || ''
+    };
+  },
+  props: {
+    q: String,
+    onSearch: Function
+  },
   methods: {
     handleSubmit() {
       this.$router.push({
