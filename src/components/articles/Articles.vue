@@ -30,6 +30,15 @@ export default {
     Article,
     ArticleSearch,
   },
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.q;
+      const oldSearch = oldRoute.query.q;
+      if(newSearch === oldSearch) return;
+      this.q = decodeURIComponent(newSearch);
+      this.searchArticles();
+    }
+  },
   methods: {
     getArticles() {
       articleApi.getArticles();
@@ -40,16 +49,9 @@ export default {
     },
     searchArticles() {
       this.loading = true;
-      this.error = null;
-
-      api.getArticle(this.q)
+      articleApi.getArticles(this.q)
         .then(response => {
-          this.article = response.results;
-          this.loading = false;
-        })
-        .catch(err => {
-          this.error = err.message;
-          this.article = null;
+          this.articles = response.articles;
           this.loading = false;
         });
     }
@@ -59,7 +61,7 @@ export default {
       console.log(articles);
       this.articles = articles.articles;
     });
-  }
+  },
 };
 </script>
 
