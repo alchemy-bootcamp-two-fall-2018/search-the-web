@@ -48,8 +48,8 @@ export default {
   methods: {
       getArticles() {
         articlesApi.getArticles();
-
-      handleSearch(news) ;
+      },
+      handleSearch(news) {
         this.news = news || '';
         this.searchArticles();
     },
@@ -59,7 +59,7 @@ export default {
     .then(response => {
         this.articles = response.articles;
         this.loading = false;
-    });
+          });
     }
   },
   created() {
