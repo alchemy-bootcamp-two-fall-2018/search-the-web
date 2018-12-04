@@ -1,9 +1,11 @@
 <template>
+  <div>
     <form @submit.prevent="handeSubmit">
         <h3>Article Search</h3>
-        <input v-model="keyword">
+        <input type="text" v-model="keyword">
         <button>Search</button>
     </form>
+  </div>
 </template>
 
 <script>
@@ -14,7 +16,8 @@ export default {
         };
     },
     props: {
-        onSearch:Function
+        news: String,
+        onSearch: Function
     },
     methods: {
         handleSubmit() {
@@ -25,13 +28,14 @@ export default {
             });
         }
     },
+
     watch: {
-        news(newSearch) {
-            if(this.keyword !== newSearch) {
-                this.keyword = newSearch;
-            }
+    news(newSearch) {
+        if(this.keyword !== newSearch) {
+            this.keyword = newSearch;
         }
     }
+} 
 };
 </script>
 

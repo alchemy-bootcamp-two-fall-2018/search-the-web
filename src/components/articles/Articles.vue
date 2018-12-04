@@ -1,60 +1,82 @@
 <template>
-    <section class="articles">
+    <div>
         <h2>Articles</h2>
-        <p>{{articles}}</p>
-    <div class="search-container">
-    <ul v-if="articles">
-    <Articles v-for="(articles, i) in article"
-        :key="i"
-        :articles="articles"
-    />
-    </ul>
-
-    </section>   
+        <Loader
+        :loading="loading"
+        />
+        <ArticleSearch
+        :onSearch="handleSearch"
+        />
+        <ul>
+            <Article
+            v-for="(article, i) in articles"
+            :key="i"
+            :article="article"
+            />
+        </ul>
+    </div>
 </template>
 
 <script>
 import ArticleSearch from './ArticleSearch';
 import Article from './Article';
 import articlesApi from '../../articlesApi.js';
-// import Loader from './Loader';
+import Loader from './Loader';
 
 export default {
   data() {
     return {
       articles: null,
-      search: decodeURIComponent(this.$route.query.search)
+      loading: false,
+      news: decodeURIComponent(this.$route.query.news)
     };
   },
   components: {
     Article,
-    ArticleSearch
+    ArticleSearch,
+    Loader
   },
-  created() {
-    this.searchArticles();
-    this.articles = articleApi.getArticles();
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.news;
+      const oldSearch = oldRoute.query.news;
+      if(newSearch === oldSearch) return;
+      this.news = decodeURIComponent(newSearch);
+      this.searchArticles();
+    }  
   },
   methods: {
     getArticles() {
       articleApi.getArticles();
 
-    handleSearch(search) ;
-        this.search = search || '';
+    handleSearch(news) ;
+        this.news = news || '';
         this.searchArticles();
+    },
+    searchArticles() {
+    this.loading = true;
+    articleApi.getArticles(this.news)
+    .then(response => {
+        this.articles = response.articles;
+        this.loading = false;
+    });
     }
-},
-// searchArticles() {
-}
-;
+  },
+  created() {
+    articleApi.getArticles().then(articles => {
+      this.articles = articles.articles;
+    });
+  }
+};
 </script>
 
 <style>
-/* .loader {
+.loader {
   position: absolute;
   top: 0; right: 0;
   bottom: 0; left: 0;
-  color: white;
+  color: rgb(233, 57, 57);
   font-weight: bolder;
-  background: rgba(0, 0, 0, .6);
-} */
+  background: rgba(94, 16, 16, 0.6);
+} 
 </style>

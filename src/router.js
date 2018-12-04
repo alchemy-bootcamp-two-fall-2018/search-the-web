@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router';
-import Home from './components/Home';
+import Home from './components/Home.vue';
 import Articles from './components/articles/Articles.vue';
 
 export default new VueRouter({
