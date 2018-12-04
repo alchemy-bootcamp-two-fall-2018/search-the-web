@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>Articles</h2>
+        <ArticleSearch/>
         <ul>
             <Article
             v-for="(article, i) in articles"
@@ -33,9 +34,7 @@ export default {
   },
   created() {
     articleApi.getArticles().then(articles => {
-      console.log(articles);
       this.articles = articles.articles;
-      console.log(articles);
 
     });
   },
