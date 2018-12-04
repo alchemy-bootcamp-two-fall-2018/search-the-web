@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     searchMovie() {
-      api.getMovies()
+      if(!this.q) return;
+
+      api.getMovies(this.q)
         .then(response => {
           this.movies = response.Search;
         }

@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input v-model="keyword">
+    <input v-model="keyword" required>
     <button>Go</button>
   </form>
 </template>
