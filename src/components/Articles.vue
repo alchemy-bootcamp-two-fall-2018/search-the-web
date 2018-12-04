@@ -34,14 +34,14 @@ export default {
         this.searchArticles();
     },
     methods: {
+        handleSearch(search) {
+            this.search = search || '';
+        },
         searchArticles() {
             api.getArticles(this.search)
                 .then(response => {
                     this.articles = response.articles;
                 });
-        },
-        handleSearch(search) {
-            this.search = search || '';
         },
     }
 };
