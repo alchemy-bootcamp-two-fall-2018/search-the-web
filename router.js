@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
 import Home from './src/components/Home.vue';
-import SearchApp from './src/components/SearchApp.vue';
+import SearchApp from './src/components/ArticleSearch.vue';
 
 export default new VueRouter ({
     routes: [

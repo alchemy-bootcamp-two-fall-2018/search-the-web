@@ -7,37 +7,31 @@
     <h3>
       Searching for {{ search }}
     </h3>
-     
-    <pre v-show="error" class="error">
-      {{error}}
-    </pre>
-
+    <p>
+        {{Article}}
+    </p>
     <div class="search-container">
       <ul v-if="articles">
         <Article v-for="(article, i) in articles"
           :key="i"
           :article="article"
         />
-        
       </ul>
     </div>
-
   </section>
 </template>
 
 <script>
-import api from '..api';
-import Article from './Article';
-import ArticleSearch from './SearchApp';
+import api from '../services/api';
+import Article from './Article.vue';
+import ArticleSearch from './ArticleSearch.vue';
+
 export default {
     data() {
         let search = this.$route.query.search;
         return {
             articles: null,
-            error: null,
             search: search ? decodeURIComponent(search) : '',
-            total: 0,
-            perPage: 10
         };
     },
     components: {
@@ -46,11 +40,6 @@ export default {
     },
     created() {
         this.searchArticles();
-    },
-    computed: {
-        totalPages() {
-            return Math.ceil(this.total / this.perPage);
-        }
     },
     watch: {
         $route(newRoute, oldRoute) {
@@ -67,18 +56,15 @@ export default {
             this.searchArticles();
         },
         searchArticles() {
-            this.error = null;
             api.getArticles(this.search)
                 .then(response => {
                     console.log(response);
-                    this.articles = response.articles;
-                    this.total = response.count;
-                })
-                .catch(err => {
-                    this.error = err.message;
-                    this.articles = null;
+                    this.articles = response.results;
                 });
         }
     }
 };
 </script>
+<style>
+
+</style>
