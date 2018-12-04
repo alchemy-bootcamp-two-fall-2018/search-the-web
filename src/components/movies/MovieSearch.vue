@@ -36,5 +36,10 @@ export default {
 </script>
 
 <style>
-
+  form button {
+    margin-left: 10px;
+  }
+  form button:hover {
+    background: lightgreen;
+  }
 </style>

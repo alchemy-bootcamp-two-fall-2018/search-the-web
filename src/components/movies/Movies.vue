@@ -1,22 +1,16 @@
 <template>
   <section class="movies">
-    <h2>Movies</h2>
+    <h2>Search by Movie Title</h2>
 
     <MovieSearch v-bind:onSearch="handleSearch" v-bind:search="search"/>
-
     <Loader v-bind:loading="loading"/>
-
-
-    <pre v-show="error" class="error">
-      {{error}}
-    </pre>
+    <pre v-show="error" class="error">{{error}}</pre>
 
     <div class="search-container">
       <ul v-if="movies">
         <Movie v-for="(movie, index) in movies"
           v-bind:key="index"
-          v-bind:movie="movie"
-        />
+          v-bind:movie="movie"/>
       </ul>
     </div>
 
@@ -44,7 +38,6 @@ export default {
     Movie,
     MovieSearch,
     Loader
-
   },
   created() {
     this.searchMovies();
@@ -69,6 +62,11 @@ export default {
         .then(response => {
           this.movies = response.Search;
           this.loading = false;
+        })
+        .catch(err => {
+          this.error = err.message;
+          this.people = null;
+          this.loading = false;
         });
     }
   }
@@ -86,7 +84,17 @@ export default {
     font-weight: bolder;
     background: rgba(0, 0, 0, .6);
   }
-  
+  .error {
+    color: red;
+  }
+  .movies {
+    position: relative;
+    top: -250px;
+  }
+  h2 {
+    font-size: 2em;
+    text-shadow: 2px 2px 2px lightgray;
+  }
 </style>
 
 

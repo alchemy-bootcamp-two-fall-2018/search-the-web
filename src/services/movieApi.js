@@ -1,5 +1,8 @@
 export default {
-  getMovies(searchTerm = 'disney') {
+  getMovies(searchTerm = '') {
+
+    if(searchTerm === 'walk to remember') return Promise.reject(new Error('A Walk to Remember is too depressing to be watched by anyone'));
+    
     return fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=5cddd428`)
       .then(response => response.json());
   }
@@ -7,6 +10,3 @@ export default {
 
 
 
-
-
-// http://www.omdbapi.com/?t=pirates+of+the+caribbean&apikey=5cddd428
