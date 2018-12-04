@@ -1,20 +1,20 @@
 <template>
-    <div>
-        This is the article component
-        {{Article.title}}
-    </div>
+    <li>
+      {{article.title}}
+    </li>
 </template>
 
 <script>
 export default {
     props: {
-        Article: Object
-
+        article: Object
     }
-
 };
 </script>
 
 <style>
-
+  li {
+    padding: 10px;
+    text-align: center;
+  }
 </style>

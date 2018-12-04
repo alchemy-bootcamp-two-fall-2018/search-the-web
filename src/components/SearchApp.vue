@@ -1,11 +1,8 @@
 <template>
-    <div>
-        You will Search for things here
-        <form @submit.prevent="handleSubmit">
-            <input v-model="keyword">
-            <button>Search</button>
-        </form>
-    </div>
+  <form @submit.prevent="handleSubmit">
+    <input v-model="keyword">
+    <button>Search </button>
+  </form>
 </template>
 
 <script>
@@ -19,6 +16,13 @@ export default {
             keyword: this.search || ''
         };
     },
+    watch: {
+        search(newSearch) {
+            if(this.keyword !== newSearch) {
+                this.keyword = newSearch;
+            }
+        }
+    },
     methods: {
         handleSubmit() {
             this.$router.push({
@@ -27,17 +31,8 @@ export default {
                 }
             });
         }
-    },
-    watch: {
-        search(newSearch) {
-            if(this.keyword !== newSearch) {
-                this.keyword = newSearch;
-            }
-        }
-    },
+    }
 };
 </script>
-
 <style>
-
 </style>
