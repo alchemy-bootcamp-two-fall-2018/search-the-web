@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router';
 import Home from './components/home/Home';
-import KPM from './components/kpms/KPM';
+import KPMS from './components/kpms/KPMS';
 
 export default new VueRouter({
   routes: [
     { path: '/', component: Home },
-    { path: '/budget-kpm', component: KPM },
+    { path: '/budget-kpm', component: KPMS },
     { path: '*', redirect: '/' }
   ]
 });
