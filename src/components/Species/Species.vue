@@ -6,6 +6,10 @@
 
     <Loader :loading="loading"/>
 
+    <pre v-show="error" class="error">
+      {{error}}
+    </pre>
+
     <div class="search-container">
       <ul v-if="species">
         <Specie v-for="(specie, i) in species"
@@ -33,6 +37,7 @@ export default {
   data() {
     const search = this.$route.query.search;
     return {
+      error: null,
       species: null,
       loading: false,
       search: search ? decodeURIComponent(search) : '',
@@ -63,9 +68,15 @@ export default {
     },
     searchSpecies() {
       this.loading = true;
+      this.error = null;
       api.getSpecies(this.search)
         .then(response => {
           this.species = response.results;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.error = err.message;
+          this.species = null;
           this.loading = false;
         });
     }
@@ -74,5 +85,9 @@ export default {
 </script>
 
 <style>
+
+.error {
+  color: red;
+}
 
 </style>
