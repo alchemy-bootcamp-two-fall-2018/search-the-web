@@ -1,14 +1,10 @@
 <template>
-    <li>
-        <RouterLink :to="`/movies/${movie.id}`" >
-      {{movie.name}} Release {{movie.year}}
-    </RouterLink>
-    </li>
+    <div></div>
 </template>
 
 <script>
 export default {
-
+  
 };
 </script>
 
