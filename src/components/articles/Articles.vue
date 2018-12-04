@@ -21,9 +21,11 @@ import ArticleSearch from './ArticleSearch';
 
 export default {
   data() {
+    const search = this.$route.query.search;
     return {
       articles: null,
-      q: decodeURIComponent(this.$route.query.q)
+      q: decodeURIComponent(this.$route.query.q),
+      search: search ? decodeURIComponent(search) : '',
     };
   },
   components: {
