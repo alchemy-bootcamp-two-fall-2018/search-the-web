@@ -27,13 +27,17 @@ export default {
     padding: 20px;
 }
 a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: bold;
     font-size: 28px;
 }
 body {
     margin: 0;
+
     height: 100%;
+}
+main {
+    color: black;
 }
 </style>

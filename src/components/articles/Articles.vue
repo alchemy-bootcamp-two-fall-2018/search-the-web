@@ -70,7 +70,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .loader {
   position: absolute;
   top: 0; right: 0;
@@ -79,5 +79,6 @@ export default {
   font-weight: bolder;
   background: rgba(0, 0, 0, .6);
 }
+
 
 </style>

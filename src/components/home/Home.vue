@@ -22,7 +22,4 @@ a {
    
     align-items: center;
 }
-body {
-    
-}
 </style>
