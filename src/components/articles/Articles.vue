@@ -1,7 +1,13 @@
 <template>
     <div>
         <h2>Articles</h2>
-        <p>{{articles.articles}}</p>
+        <ul>
+            <Article
+            v-for="(article, i) in articles"
+            :key="i"
+            :article="article"
+            />
+        </ul>
     </div>
 </template>
 
@@ -28,7 +34,9 @@ export default {
   created() {
     articleApi.getArticles().then(articles => {
       console.log(articles);
-      this.articles = articles;
+      this.articles = articles.articles;
+      console.log(articles);
+
     });
   },
 };
