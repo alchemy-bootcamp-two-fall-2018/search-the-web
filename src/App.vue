@@ -10,6 +10,9 @@
      <main>
       <RouterView></RouterView>
     </main>
+    <footer>
+       <a href="https://newsapi.org" target="_blank">Powered by News API</a>
+     </footer>
     
   </div>
 </template>
@@ -42,9 +45,18 @@ export default {};
   margin: 3px;
   padding: 3px;
   border: 1px solid black;
+  justify-content: center;
 }
  main {
   padding: 8px;
+}
+footer a {
+  height: 50px;
+  background: lightsteelblue;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 </style>
 

@@ -1,7 +1,7 @@
 <template>
   <li>
     <RouterLink :to="`/newsstories/${newsstory.id}`" >
-      {{newsstory.title}} by {{newsstory.author}}
+      {{newsstory.title}} 
     </RouterLink>
     <!-- {{newsstory.title}} by {{newsstory.author}} -->
   </li>

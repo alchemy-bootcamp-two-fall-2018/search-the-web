@@ -1,9 +1,8 @@
 <template>
   <section class="newsstories">
     <h2>News Stories</h2>
-     <!-- <NewsStoriesSearch :onSearch="handleSearch" :search="search"/>
-    
-     <div class="search-container"> -->
+     <NewsSearch :onSearch="handleSearch" :search="search"/>
+     <div class="search-container">
       <ul v-if="newsstories">
         <NewsStory v-for="(newsstory, i) in newsstories"
           :key="i"
@@ -16,21 +15,36 @@
 <script>
 import api from '../../services/api';
 import NewsStory from './NewsStory';
+import NewsSearch from './NewsSearch';
 
 export default {
     data() {
+        let search = this.$route.query.search;
         return {
             newsstories: null,
-            search: decodeURIComponent(this.$route.query.search),
+            search: search ? decodeURIComponent(search) : ''
         };
     },
     components: {
-        NewsStory  
+        NewsStory,
+        NewsSearch  
     },
     created() {
         this.searchNewsStories();
     },
+    watch: {
+        $route(newRoute, oldRoute) {
+            const newSearch = newRoute.query.search;
+            const oldSearch = oldRoute.query.search;
+            if(newSearch === oldSearch) return;
+            this.handleSearch(newSearch);
+        }
+    },
     methods: {
+        handleSearch(search) {
+            this.search = search || '';
+            this.searchNewsStories();
+        },
         searchNewsStories() {
             api.getNews(this.search)
                 .then(response => {
