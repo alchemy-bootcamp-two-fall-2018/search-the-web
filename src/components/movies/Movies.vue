@@ -4,12 +4,12 @@
 
     <MovieSearch v-bind:onSearch="handleSearch" v-bind:search="search"/>
 
-    <Loader :loading="loading" class=".load"/>
+    <Loader v-bind:loading="loading"/>
 
 
-    <!-- <pre v-show="error" class="error">
+    <pre v-show="error" class="error">
       {{error}}
-    </pre> -->
+    </pre>
 
     <div class="search-container">
       <ul v-if="movies">
@@ -27,35 +27,38 @@
 import movieApi from '../../services/movieApi.js';
 import Movie from './Movie.vue';
 import MovieSearch from './MovieSearch.vue';
+import Loader from './Loader.vue';
 
 export default {
   data() {
     const search = this.$route.query.search;
     return {
       movies: null,
+      loading: false,
+      error: null,
       filteredMovies: [],
       search: search ? decodeURIComponent(this.$route.query.search) : ''
     };
   },
   components: {
     Movie,
-    MovieSearch
+    MovieSearch,
+    Loader
 
   },
   created() {
     this.searchMovies();
   },
   watch: {
-    $route(newRoute, oldRoute) {
+    $route(newRoute) {
       const newSearch = newRoute.query.search;
-      const oldSearch = oldRoute.query.search;
-      if(newSearch === oldSearch) return;
-      this.handleSearch(decodeURIComponent(newSearch));
+      this.search = decodeURIComponent(newSearch);
+      this.searchMovies();
     }
   },
   methods: {
     handleSearch(search) {
-      this.search = search;
+      this.search = search || '';
       this.searchMovies();
     },
     searchMovies() {
@@ -64,8 +67,8 @@ export default {
 
       movieApi.getMovies(this.search)
         .then(response => {
-          console.log('this is the response', response);
           this.movies = response.Search;
+          this.loading = false;
         });
     }
   }
@@ -73,7 +76,7 @@ export default {
 </script>
 
 <style>
-  .load {
+  .loader {
     position: absolute;
     top: 0; 
     right: 0;
