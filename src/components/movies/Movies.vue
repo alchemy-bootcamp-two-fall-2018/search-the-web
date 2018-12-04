@@ -1,7 +1,7 @@
 <template>
     <div class="search-container">
       <ul v-if="movies">
-        <Record v-for="(movie, i) in movies"
+        <Movie v-for="(movie, i) in movies"
           :key="i"
           :movie="movie"
         />
@@ -11,11 +11,11 @@
 
 <script>
 import api from '../../services/api';
-import Record from './Record';
+import Movie from './Movies';
 
 export default {
   components: {
-    Record
+    Movie
   },
   data() {
     return {
