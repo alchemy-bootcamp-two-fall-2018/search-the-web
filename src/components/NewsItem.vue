@@ -1,12 +1,15 @@
 <template>
     <section>
-        HOME PAGE
+        ARticles will go here
+        
     </section>
 </template>
 
 <script>
 export default {
-
+    props: {
+        newsItem: Object
+    }
 };
 </script>
 
