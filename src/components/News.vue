@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="news">
         NEWS
         <!-- {{news}} -->
         <div>
@@ -26,9 +26,11 @@ import NewsSearch from './NewsSearch';
 
 export default {
     data() {
+        // const search = this.$route.query.search;
         return {
             news: null,
             search: decodeURIComponent(this.$route.query.search)
+            // search: search ? decodeURIComponent(search) : '',
         };
     },
     components: {
@@ -38,18 +40,35 @@ export default {
     created() {
         this.searchNews();
     },
+    watch: {
+        $route(newRoute, oldRoute){
+            const newSearch = newRoute.query.search;
+            const oldSearch = oldRoute.query.search;
+
+            if(newSearch === oldSearch) return;
+
+            this.search = decodeURIComponent(newSearch);
+            this.searchNews();
+        }
+    },
     methods: {
         handleSearch(search) {
             this.search = search || '';
+            this.searchNews();
+        },
+        recordPage() {
+            this.$router.push ({
+                query: {
+                    search: encodeURIComponent(this.search)
+                }
+            });
         },
         searchNews() {
             api.getNews(this.search)
                 .then(response => {
                     this.news = response.articles;
-                    
-
                 });
-        }
+        },
     }
   
 };
