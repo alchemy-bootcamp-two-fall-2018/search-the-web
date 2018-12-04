@@ -1,30 +1,11 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <input v-model="keyword" required>
-    <button>Go</button>
-  </form>
+<div><h3>Welcome to the Movie Search Component</h3></div>
 </template>
 
 <script>
 export default {
-  props: {
-    search: String,
-    onSearch: Function
-  },
-  data() {
-    return {
-      keyword: this.search || ''
-    };
-  },
-  methods: {
-    handleSubmit() {
-      this.$router.push({
-        query: {
-          search: encodeURIComponent(this.keyword)
-        }
-      });
-    }
-  }
+  
+
 };
 </script>
 
