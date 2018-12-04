@@ -5,7 +5,7 @@
     <ArticleSearch :onSearch="handleSearch" :search="search"/>
 
     <h3>
-      Searching for {{ search }} - found {{articles.length}} -
+      Searching for {{ search }}
     </h3>
      
     <pre v-show="error" class="error">
@@ -32,10 +32,11 @@ import ArticleSearch from './ArticleSearch';
 
 export default {
     data() {
+        let search = this.$route.query.search;
         return {
             articles: null,
             error: null,
-            search: decodeURIComponent(this.$route.query.search),
+            search: search ? decodeURIComponent(search) : '',
             total: 0,
             perPage: 10
         };
