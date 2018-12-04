@@ -1,11 +1,11 @@
 <template>
-  <section class="books">
-    <h2>Books</h2>
+  <section class="articles">
+    <h2>Articles</h2>
 
-    <BookSearch :onSearch="handleSearch" :search="search"/>
+    <ArticleSearch :onSearch="handleSearch" :search="search"/>
 
     <p>
-      Searching for &quot;{{ search }}&quot; - found {{total}} -
+      Searching for {{ search }} - found {{total}} -
     </p>
      
     <pre v-show="error" class="error">
@@ -13,13 +13,13 @@
     </pre>
 
     <div class="search-container">
-      <ul v-if="books">
-        <Book v-for="(book, i) in books"
+      <ul v-if="articles">
+        <Article v-for="(article, i) in articles"
           :key="i"
-          :book="book"
+          :article="article"
         />
+        
       </ul>
-
     </div>
 
   </section>
@@ -27,13 +27,13 @@
 
 <script>
 import api from './services/api';
-import Book from './Book';
-import BookSearch from './BookSearch';
+import Article from './Article';
+import ArticleSearch from './ArticleSearch';
 
 export default {
     data() {
         return {
-            books: null,
+            articles: null,
             error: null,
             search: decodeURIComponent(this.$route.query.search),
             total: 0,
@@ -41,11 +41,11 @@ export default {
         };
     },
     components: {
-        Book,
-        BookSearch,
+        Article,
+        ArticleSearch,
     },
     created() {
-        this.searchBooks();
+        this.searchArticles();
     },
     computed: {
         totalPages() {
@@ -58,24 +58,25 @@ export default {
             const oldSearch = oldRoute.query.search;
             if(newSearch === oldSearch) return;
             this.search = decodeURIComponent(newSearch);
-            this.searchBooks();
+            this.handleSearch(this.search);
         }
     },
     methods: {
         handleSearch(search) {
             this.search = search || '';
-            this.searchBooks();
+            this.searchArticles();
         },
-        searchBooks() {
+        searchArticles() {
             this.error = null;
-            api.getBooks(this.search)
+            api.getArticles(this.search)
                 .then(response => {
-                    this.books = response.results;
+                    console.log(response);
+                    this.articles = response.articles;
                     this.total = response.count;
                 })
                 .catch(err => {
                     this.error = err.message;
-                    this.books = null;
+                    this.articles = null;
                 });
         }
     }
