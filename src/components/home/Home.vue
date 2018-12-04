@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h2>Welcom to PDX Housing Affordability Search!</h2>
-    <router-link to="/people">Search people </router-link>
+    <h2>Welcome to News Search!</h2>
+    <router-link to="/articles">Search articles </router-link>
   </section>
 
 </template>
