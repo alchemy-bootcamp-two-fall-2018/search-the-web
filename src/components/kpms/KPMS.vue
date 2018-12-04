@@ -4,7 +4,7 @@
 
         <KPMSSearch :onSubmit="handleSubmit"/>
 
-        <div v-show="error"><br>
+        <div v-show="error" class="error"><br>
           {{error}}
         </div>
 
@@ -22,13 +22,14 @@ export default {
   data() {
     return {
       kpms: [],
-      route: this.$route,
-      error: null
+      error: null,
     };
   },
   watch: {
-    route(newRoute) {
-      api.getKpm(newRoute.query.fiscal_year).then(console.log);
+    $route(newRoute) {
+      if(this.search !== newRoute.query.fiscal_year) {
+        this.handleSubmit({fyear: newRoute.query.fiscal_year});
+      }
     }
   },
   created() {
@@ -48,7 +49,6 @@ export default {
       api.getKpm(keyword.fyear)
         .then(kpms => this.kpms = kpms.results)
         .catch(err => this.error = err.message);
-      this.route = this.$route;
     }
   }
 
@@ -56,5 +56,7 @@ export default {
 </script>
 
 <style>
-
+.error {
+  color: red;
+}
 </style>
