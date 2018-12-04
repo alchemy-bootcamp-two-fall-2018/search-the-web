@@ -1,7 +1,6 @@
 <template>
     <li>
-        NewItem Rendered
-        {{newsItem}}
+        {{newsItem.title}}
     </li>
 </template>
 
