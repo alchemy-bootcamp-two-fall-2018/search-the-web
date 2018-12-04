@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <header>
-      <nav>
+      <nav id="top">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/articles">Articles</RouterLink>
       </nav>
@@ -19,5 +19,21 @@ export default {
 </script>
 
 <style>
-
+#top {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(65,63,64);
+    color: white;
+    padding: 20px;
+}
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 28px;
+}
+body {
+    margin: 0;
+    height: 100%;
+}
 </style>

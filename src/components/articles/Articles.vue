@@ -79,4 +79,5 @@ export default {
   font-weight: bolder;
   background: rgba(0, 0, 0, .6);
 }
+
 </style>
