@@ -28,5 +28,5 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-// key: 1e6CTnRmAHItWG291mCd3w,
-// secret: l6m4KwU0vDlqvjxMiIwMQvtnGcIHneEiJn7xRmz9ls
+// key: EcePBcx3zUsEKTIf20b1dA,
+// secret: WWGHSInZTVf9kzkPrCdvulTdD1aRy2VPukD541AJn8
