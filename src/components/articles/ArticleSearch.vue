@@ -1,7 +1,7 @@
 <template>
   <div>
-    <form @submit.prevent="handeSubmit">
-        <h3>Article Search</h3>
+    <h3>Article Search</h3>
+    <form @submit.prevent="handleSubmit">
         <input type="text" v-model="keyword">
         <button>Search</button>
     </form>

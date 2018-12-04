@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Articles</h2>
+        <h2>Articles Library</h2>
         <Loader
         :loading="loading"
         />
@@ -18,17 +18,17 @@
 </template>
 
 <script>
-import ArticleSearch from './ArticleSearch';
-import Article from './Article';
+import ArticleSearch from './ArticleSearch.vue';
+import Article from './Article.vue';
 import articlesApi from '../../articlesApi.js';
-import Loader from './Loader';
+import Loader from './Loader.vue';
 
 export default {
   data() {
     return {
       articles: null,
       loading: false,
-      news: decodeURIComponent(this.$route.query.news)
+      news: decodeURIComponent(this.$route.query.news),
     };
   },
   components: {
@@ -46,16 +46,16 @@ export default {
     }  
   },
   methods: {
-    getArticles() {
-      articleApi.getArticles();
+      getArticles() {
+        articlesApi.getArticles();
 
-    handleSearch(news) ;
+      handleSearch(news) ;
         this.news = news || '';
         this.searchArticles();
     },
     searchArticles() {
     this.loading = true;
-    articleApi.getArticles(this.news)
+    articlesApi.getArticles(this.news)
     .then(response => {
         this.articles = response.articles;
         this.loading = false;
@@ -63,7 +63,7 @@ export default {
     }
   },
   created() {
-    articleApi.getArticles().then(articles => {
+    articlesApi.getArticles().then(articles => {
       this.articles = articles.articles;
     });
   }
