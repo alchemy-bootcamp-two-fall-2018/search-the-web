@@ -9,6 +9,22 @@
 
 <script>
 export default {
+  props: {
+    q: String,
+    onSearch: Function
+  },
+  data() {
+    return {
+      keyword: this.q || ''
+    };
+  },
+  watch: {
+    search(newSearch) {
+      if(this.keyword !== newSearch) {
+        this.keyword = newSearch;
+      }
+    }
+  },
   methods: {
     handleSubmit() {
       this.$router.push({
@@ -17,7 +33,8 @@ export default {
         }
       });
     }
-  }
+  },
+  
 };
 
 </script>
