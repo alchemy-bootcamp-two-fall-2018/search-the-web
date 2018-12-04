@@ -32,7 +32,6 @@ h2 {
   color: white;
   margin: 3px;
   padding: 10px;
-  border: 1px solid white;
 }
 </style>
 
