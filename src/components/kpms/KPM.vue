@@ -1,10 +1,16 @@
 <template>
-    <!-- <ul>
-        <li>yo</li>
-    </ul> -->
-    <div>
-        {{kpms}}
-    </div>
+    <table>
+        <tr>
+            <th>amount</th>
+            <th>bureau</th>
+            <th>fiscal_year</th>
+        </tr>
+        <tr v-for="(kpm, index) in kpms" :key="index">
+            <td>{{kpm.amount}}</td>
+            <td>{{kpm.bureau}}</td>
+            <td>{{kpm.fiscal_year}}</td>
+        </tr>
+    </table>
 </template>
 
 <script>
