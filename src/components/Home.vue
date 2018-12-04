@@ -2,8 +2,9 @@
   <section>
     <h2 class="welcome">Welcome To The News Home Page!</h2>
     <div>
-      <RouterLink to="/articles">See Articles</RouterLink>
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmrDSTJbrQNEjGHPvlW6gcyVv_44bxo5qQAA-6QCFPwv-Squb1" alt="">
+      <br />
+      <RouterLink to="/articles">See Articles</RouterLink>
     </div>
   </section>
 </template>
@@ -20,7 +21,7 @@
     margin: 0 auto;
   }
   img {
-    width: 60%;
+    width: 40%;
     box-shadow: 2px 2px 2px black;
   }
   h2 {

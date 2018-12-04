@@ -12,25 +12,25 @@
 export default {
     data() {
         return {
-            keyword: this.news || ''
+            keyword: this.q || ''
         };
     },
     props: {
-        news: String,
+        q: String,
         onSearch: Function
     },
     methods: {
         handleSubmit() {
             this.$router.push({
                 query: {
-                    news: encodeURIComponent(this.keyword)
+                    q: encodeURIComponent(this.keyword)
                 }
             });
         }
     },
 
     watch: {
-    news(newSearch) {
+    q(newSearch) {
         if(this.keyword !== newSearch) {
             this.keyword = newSearch;
         }
