@@ -125,4 +125,21 @@ export default {
   font-weight: bolder;
   background: rgba(0, 0, 0, .6);
 }
+
+h2 {
+  text-decoration: underline;
+}
+
+p {
+  border: 2px outset gray;
+  padding: 5px 0;
+}
+
+ul {
+  background: lightgray;
+  box-shadow: 6px 6px 6px gray;
+  border: 1px solid gray;
+  padding: 5px auto;
+  text-align: left;
+}
 </style>

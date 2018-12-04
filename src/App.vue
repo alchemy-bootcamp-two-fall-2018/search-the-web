@@ -2,9 +2,9 @@
   <div id="app">
     <header>
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink class="navbar" to="/">Home</RouterLink>
         <div></div>
-        <RouterLink to="/news">News</RouterLink>
+        <RouterLink class="navbar" to="/news">News</RouterLink>
       </nav>
     </header>
 
@@ -27,5 +27,18 @@ export default {};
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+header {
+  background: gray;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.navbar {
+  background: white;
+  margin: 50px;
+  /* padding: 10px; */
 }
 </style>
