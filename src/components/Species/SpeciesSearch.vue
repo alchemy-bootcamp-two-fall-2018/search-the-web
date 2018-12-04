@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <input v-model="keyword"> 
-    <button> Go </button>
+    <button> Search </button>
   </form>
 </template>
 
@@ -16,13 +16,13 @@ export default {
       keyword: this.search || ''
     }; 
   },
-  watch: {
-    search(newSearch) {
-      if(this.keyword !== newSearch) {
-        this.keyword = newSearch;
-      }
-    }
-  },
+  // watch: {
+  //   search(newSearch) {
+  //     if(this.keyword !== newSearch) {
+  //       this.keyword = newSearch;
+  //     }
+  //   }
+  // },
   methods: {
     handleSubmit() {
       this.$router.push({

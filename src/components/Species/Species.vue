@@ -4,6 +4,8 @@
     
     <SpeciesSearch :onSearch="handleSearch" :search="search"/>
 
+    <Loader :loading="loading"/>
+
     <div class="search-container">
       <ul v-if="species">
         <Specie v-for="(specie, i) in species"
@@ -24,32 +26,34 @@
 import api from '../services/api.js'; 
 import SpeciesSearch from './SpeciesSearch'; 
 import Specie from './Specie'; 
+import Loader from './Loader'; 
 
 export default {
   
   data() {
+    const search = this.$route.query.search;
     return {
       species: null,
-      search: decodeURIComponent(this.$route.query.search),
+      loading: false,
+      search: search ? decodeURIComponent(search) : '',
     };
   }, 
   components: {
     Specie, 
+    Loader,
     SpeciesSearch
   }, 
+  created() {
+    this.searchSpecies(); 
+    
+  },
   watch: {
     $route(newRoute, oldRoute) {
       const newSearch = newRoute.query.search;
       const oldSearch = oldRoute.query.search;
-      // let newPage = newRoute.query.page;
-      // const oldPage = oldRoute.query.page;
       if(newSearch === oldSearch) return;
-      // if(newSearch !== oldSearch) {
-      //   newPage = 1;
-      // }
       this.search = decodeURIComponent(newSearch);
-      // this.page = newPage;
-      this.handleSearch(this.search);
+      this.searchSpecies();
     }
   },
   methods: {
@@ -58,9 +62,11 @@ export default {
       this.searchSpecies();
     },
     searchSpecies() {
+      this.loading = true;
       api.getSpecies(this.search)
         .then(response => {
           this.species = response.results;
+          this.loading = false;
         });
     }
   }

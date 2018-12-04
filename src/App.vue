@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style>
-nav {
+main {
   padding: 10px;
 }
 </style>
