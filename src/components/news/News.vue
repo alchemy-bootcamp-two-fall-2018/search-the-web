@@ -18,7 +18,7 @@
 
     <div class="search-container">
       <ul v-if="news">
-        <Person v-for="(newsStory, i) in news"
+        <NewsStory v-for="(newsStory, i) in news"
           :key="i"
           :news="news"
         />
@@ -87,14 +87,41 @@ export default {
     recordPage() {
       this.$router.push({
         query: {
-          
+          search: encodeURIComponent(this.search),
+          page: this.page
         }
-      })
+      });
+    },
+    searchNews() {
+      this.loading = true;
+      this.error = null;
+
+      api.getNews(this.search, this.page)
+        .then(response => {
+          this.news = response.results;
+          this.total = response.count;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.error = err.message;
+          this.news = null;
+          this.loading = false;
+        });
     }
   }
 };
 </script>
 
 <style>
-
+.error {
+  color: red;
+}
+.loader {
+  position: absolute;
+  top: 0; right: 0;
+  bottom: 0; left: 0;
+  color: white;
+  font-weight: bolder;
+  background: rgba(0, 0, 0, .6);
+}
 </style>
