@@ -1,5 +1,9 @@
 <template>
-    <h3>Article Search</h3>
+    <form @submit.prevent="handeSubmit">
+        <h3>Article Search</h3>
+        <input v-model="keyword">
+        <button>Submit</button>
+    </form>
 </template>
 
 <script>
