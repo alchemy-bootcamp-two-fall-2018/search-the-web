@@ -1,7 +1,7 @@
 <template>
-    <RouterLink :to="`/articles/${article.id}`" >
-      {{article.title}} : {{article.description}}
-    </RouterLink>
+    <li>
+      {{article.title}} -- {{article.author}}
+    </li>
 </template>
 
 <script>
@@ -13,5 +13,8 @@ export default {
 </script>
 
 <style>
-
+  li {
+    padding: 10px;
+    text-align: center;
+  }
 </style>
