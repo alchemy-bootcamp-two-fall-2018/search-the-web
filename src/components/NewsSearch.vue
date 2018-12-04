@@ -2,8 +2,8 @@
     <section>
         News Search
         <form @submit.prevent="handleSubmit">
-            <input v:model="keyword">
-            <button> Go </button>
+            <input v-model="keyword" required>
+            <button> Search </button>
         </form>
     </section>
 </template>

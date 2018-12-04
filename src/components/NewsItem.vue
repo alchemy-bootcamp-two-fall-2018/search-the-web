@@ -1,6 +1,11 @@
 <template>
     <section>
-        {{newsItem.title}}
+        <li>
+            <!-- <RouterLink to="`/news/${newsItem.article}"> -->
+            {{newsItem.title}}
+            <!-- </RouterLink> -->
+        </li>
+        
     </section>
 </template>
 

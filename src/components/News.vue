@@ -5,7 +5,7 @@
         <div>
             <NewsSearch
                 :onSearch="handleSearch"
-                :search="search"/>
+                :q="q"/>
         </div>
         <div>
             <ul v-if="news">
@@ -26,11 +26,11 @@ import NewsSearch from './NewsSearch';
 
 export default {
     data() {
-        // const search = this.$route.query.search;
+        let q = this.$route.query.q;
         return {
             news: null,
-            search: decodeURIComponent(this.$route.query.search)
-            // search: search ? decodeURIComponent(search) : '',
+            // search: decodeURIComponent(this.$route.query.search)
+            q: q ? decodeURIComponent(q) : '',
         };
     },
     components: {
@@ -44,27 +44,27 @@ export default {
         $route(newRoute, oldRoute){
             const newSearch = newRoute.query.search;
             const oldSearch = oldRoute.query.search;
-
             if(newSearch === oldSearch) return;
-
-            this.search = decodeURIComponent(newSearch);
+            this.q = decodeURIComponent(newSearch);
             this.searchNews();
         }
     },
     methods: {
-        handleSearch(search) {
-            this.search = search || '';
+        handleSearch(q) {
+            this.q = q || '';
             this.searchNews();
         },
-        recordPage() {
-            this.$router.push ({
-                query: {
-                    search: encodeURIComponent(this.search)
-                }
-            });
-        },
+        // recordPage() {
+        //     this.$router.push ({
+        //         query: {
+        //             search: encodeURIComponent(this.search)
+        //         }
+        //     });
+        // },
         searchNews() {
-            api.getNews(this.search)
+            if(!this.q) return;
+            
+            api.getNews(this.q)
                 .then(response => {
                     this.news = response.articles;
                 });
