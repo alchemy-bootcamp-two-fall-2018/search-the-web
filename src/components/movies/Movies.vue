@@ -1,64 +1,73 @@
 <template>
-  <section class="people">
+  <section class="movies">
     <h2>Movies</h2>
 
-    <!-- <Loader :loading="loading" class=".load"/> -->
+    <MovieSearch v-bind:onSearch="handleSearch" v-bind:search="search"/>
+
+    <Loader :loading="loading" class=".load"/>
 
 
-    <pre v-show="error" class="error">
+    <!-- <pre v-show="error" class="error">
       {{error}}
-    </pre>
+    </pre> -->
 
-</section>
+    <div class="search-container">
+      <ul v-if="movies">
+        <Movie v-for="(movie, index) in movies"
+          v-bind:key="index"
+          v-bind:movie="movie"
+        />
+      </ul>
+    </div>
+
+  </section>
 </template>
 
 <script>
 import movieApi from '../../services/movieApi.js';
+import Movie from './Movie.vue';
+import MovieSearch from './MovieSearch.vue';
 
 export default {
   data() {
+    const search = this.$route.query.search;
     return {
       movies: null,
-      loading: false,
-      error: null,
-      search: decodeURIComponent(this.$route.query.search)
+      filteredMovies: [],
+      search: search ? decodeURIComponent(this.$route.query.search) : ''
     };
   },
   components: {
+    Movie,
+    MovieSearch
 
   },
   created() {
-    // this.searchMovies();
-    movieApi.getMovies()
-      .then(response => {
-        console.log(response);
-        this.loading = false;
-      });
+    this.searchMovies();
   },
   watch: {
-    $route(newRoute) {
+    $route(newRoute, oldRoute) {
       const newSearch = newRoute.query.search;
-      // const oldSearch = oldRoute.query.search;
-
-      this.search = decodeURIComponent(newSearch);
-      this.searchMovies();
+      const oldSearch = oldRoute.query.search;
+      if(newSearch === oldSearch) return;
+      this.handleSearch(decodeURIComponent(newSearch));
     }
   },
   methods: {
     handleSearch(search) {
-      this.search = search || '';
+      this.search = search;
       this.searchMovies();
-    }
-    // searchMovies() {
-    //   this.loading = true;
-    //   this.error = null;
+    },
+    searchMovies() {
+      this.loading = true;
+      this.error = null;
 
-    //   movieApi.getMovies(this.search)
-    //     .then(response => {
-    //       this.movies = response.results;
-    //       this.loading = false;
-    //     });
-    // }
+      movieApi.getMovies(this.search)
+        .then(response => {
+          console.log('this is the response', response);
+          this.movies = response.Search;
+        });
+    }
   }
 };
 </script>

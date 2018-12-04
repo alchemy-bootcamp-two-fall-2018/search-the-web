@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>Welcome to the Movie Search!</h2>
-    <router-link to="/people">Search for a Movie:</router-link>
+    <RouterLink to="/movies">Search for a Movie</RouterLink>
   </section>
 </template>
 
