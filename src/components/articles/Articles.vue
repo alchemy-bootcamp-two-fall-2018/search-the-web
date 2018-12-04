@@ -36,22 +36,36 @@ export default {
     ArticleSearch,
     Loader
   },
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.q;
+      const oldSearch = oldRoute.query.q;
+      if(newSearch === oldSearch) return;
+      this.q = decodeURIComponent(newSearch);
+      this.searchArticles();
+    }
+  },
   methods: {
     getArticles() {
       articleApi.getArticles();
+    },
+    handleSearch(q) {
+      this.q = q || '';
+      this.searchArticles();
+    },
+    searchArticles() {
+      this.loading = true;
+      articleApi.getArticles(this.q)
+        .then(response => {
+          this.articles = response.articles;
+          this.loading = false;
+        });
     }
   },
   created() {
     articleApi.getArticles().then(articles => {
       this.articles = articles.articles;
     });
-  },
-  handleSearch(q) {
-    this.q = q || '';
-    this.searchArticles();
-  },
-  searchArticles() {
-    this.loading = true;
   }
 };
 </script>

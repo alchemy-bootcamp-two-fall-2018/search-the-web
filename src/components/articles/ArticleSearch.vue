@@ -27,6 +27,13 @@ export default {
         }
       });
     }
+  },
+  watch: {
+    q(newSearch) {
+      if(this.keyword !== newSearch) {
+        this.keyword = newSearch;
+      }
+    }
   }
 };
 </script>
