@@ -3,6 +3,8 @@
     <header>
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <div></div>
+        <RouterLink to="/news">News</RouterLink>
       </nav>
     </header>
 
