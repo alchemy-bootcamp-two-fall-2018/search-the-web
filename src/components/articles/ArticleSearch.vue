@@ -1,8 +1,27 @@
 <template>
   <section>
-    <h2>I am article search</h2>
+  <form @submit.prevent="handleSubmit">
+    <input v-model="keyword">
+    <button>Go</button>
+  </form>
   </section>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleSubmit() {
+      this.$router.push({
+        query: {
+          q: encodeURIComponent(this.keyword)
+        }
+      });
+    }
+  }
+};
+
+</script>
+
 
 <style>
 

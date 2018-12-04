@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>Search Articles</h2>
+    <h2>Enter a subject to get articles:</h2>
     <ArticleSearch />
     <ul>
     <Article v-for="(article, i) in articles"
