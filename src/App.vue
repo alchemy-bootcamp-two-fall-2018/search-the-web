@@ -3,7 +3,7 @@
     <header>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/keyword">Keyword Search</RouterLink>
+        <RouterLink to="/arts">Keyword Search</RouterLink>
       </nav>
     </header>
 
@@ -36,7 +36,7 @@ header {
 
 nav a {
   text-decoration: none;
-  color: white;
+  color: black;
   margin: 3px;
   padding: 3px;
   border: 1px solid black;

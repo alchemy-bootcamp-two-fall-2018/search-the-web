@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h2>News Search</h2>
-    <RouterLink to="/keyword">keyword search</RouterLink>
+    <h2>Welcome!</h2>
+    <RouterLink to="/news-search"></RouterLink>
   </section>
 </template>
 

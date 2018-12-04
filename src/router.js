@@ -1,10 +1,10 @@
 import VueRouter from 'vue-router';
 import Home from './components/home/Home';
-import Keyword from './components/keyword/Keyword';
+import Arts from './components/news-search/Arts';
 
 export default new VueRouter({
   routes: [
     { path: '/', component: Home },
-    { path: '/keyword', component: Keyword }
+    { path: '/arts', component: Arts }
   ]
 });
