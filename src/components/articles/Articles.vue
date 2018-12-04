@@ -41,8 +41,8 @@ export default {
       error: null,
       search: decodeURI(this.$route.query.search),
       page: decodeURIComponent(search),
-      total: 0
-      // perPage: 10
+      total: 0,
+      perPage: 10
     };
   },
   components: {
