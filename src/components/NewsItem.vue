@@ -1,7 +1,7 @@
 <template>
     <section>
         ARticles will go here
-        
+        {{newsItem.title}}
     </section>
 </template>
 

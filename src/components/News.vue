@@ -35,6 +35,7 @@ export default {
             api.getNews(this.search)
                 .then(response => {
                     this.news = response.articles;
+                    
 
                 });
         }
