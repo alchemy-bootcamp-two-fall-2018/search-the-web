@@ -1,6 +1,6 @@
 <template>
-    <form>
-        <input type="text">
+    <form @submit.prevent="handleSubmit">
+        <input v-model="keyword" type="text">
         <button>Search</button>
     </form>
 </template>

@@ -1,7 +1,7 @@
 <template>
    <section>
        <h2>NEWS</h2>
-       <NewsSearch />
+       <NewsSearch :onSearch="handleSearch" />
        <div>
            <ul v-if="news">
            <NewsItem v-for="(newsItem, i) in news"
@@ -38,7 +38,8 @@ export default {
       const newSearch = newRoute.query.search;
       const oldSearch = oldRoute.query.search;
       if(newSearch === oldSearch) return;
-    //   this.search = decodeURIComponent(newSearch); 
+      this.search = decodeURIComponent(newSearch); 
+      this.searchNews();
     }
   },
   methods: {
