@@ -23,17 +23,21 @@ export default {
     return {
       kpms: [],
       error: null,
+      search: this.$route.query.fiscal_year || ''
     };
   },
   watch: {
     $route(newRoute) {
-      if(this.search !== newRoute.query.fiscal_year) {
-        this.handleSubmit({fyear: newRoute.query.fiscal_year});
+      if(newRoute.query.fiscal_year && this.search !== newRoute.query.fiscal_year) {
+        this.search = { fyear: newRoute.query.fiscal_year };
+      } else if(!newRoute.query.fiscal_year) {
+        this.search = { fyear: '' };
       }
+      this.handleSubmit(this.search);
     }
   },
   created() {
-    api.getKpm().then(kpms => this.kpms = kpms.results);
+    api.getKpm(this.search).then(kpms => this.kpms = kpms.results);
   },
   components: {
     KPM,
