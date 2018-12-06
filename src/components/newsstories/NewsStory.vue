@@ -1,9 +1,12 @@
 <template>
-  <li>
-    <RouterLink :to="`/newsstories/${newsstory.id}`" >
+  <li v:if="newsstory">
+      <a :href="newsstory.url" target="_blank">
+        <p>{{newsstory.title}} by {{newsstory.author}}</p>
+      </a>
+    <!-- <RouterLink :to="`/newsstories/${newsstory.id}`" >
       {{newsstory.title}} 
-    </RouterLink>
-    <!-- {{newsstory.title}} by {{newsstory.author}} -->
+    </RouterLink> -->
+
   </li>
 </template>
 
@@ -15,5 +18,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+li {
+  text-align: left;
+  list-style: none;
+}
+p {
+  font-size: 1.15em;
+  font-weight:bold;
+  font-family: Times;
+  margin: 3px;
+}
 </style>
