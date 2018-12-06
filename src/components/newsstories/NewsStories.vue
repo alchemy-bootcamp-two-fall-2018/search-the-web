@@ -3,7 +3,7 @@
     <h2>News Stories</h2>
      <NewsSearch :onSearch="handleSearch" :search="search"/>
      <Loader :loading="loading"/>   
-     <pre v-show="error" class="error>" {{error}} </pre>
+     <pre v-show="error" class="error"> {{error}} </pre>
      <div class="search-container">
       <ul v-if="newsstories">
         <NewsStory v-for="(newsstory, i) in newsstories"
