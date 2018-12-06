@@ -3,7 +3,7 @@
     <h2>News Stories</h2>
      <NewsSearch :onSearch="handleSearch" :search="search"/>
      <Loader :loading="loading"/>   
-     
+     <pre v-show="error" class="error>" {{error}} </pre>
      <div class="search-container">
       <ul v-if="newsstories">
         <NewsStory v-for="(newsstory, i) in newsstories"
@@ -26,6 +26,7 @@ export default {
         return {
             newsstories: null,
             loading: false,
+            error: null,
             search: search ? decodeURIComponent(search) : ''
         };
     },
@@ -52,10 +53,16 @@ export default {
         },
         searchNewsStories() {
             this.loading = true;
+            this.error = null;
 
             api.getNews(this.search)
                 .then(response => {
                     this.newsstories = response.articles;
+                    this.loading = false;
+                })
+                .catch(err => {
+                    this.error = err.message;
+                    this.newsstories = null;
                     this.loading = false;
                 });
         }
