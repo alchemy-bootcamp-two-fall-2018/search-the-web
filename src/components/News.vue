@@ -2,6 +2,9 @@
    <section>
        <h2>NEWS</h2>
        <NewsSearch :onSearch="handleSearch" />
+
+      <Loading :loading="loading" />
+
        <div>
            <ul v-if="news">
            <NewsItem v-for="(newsItem, i) in news"
@@ -18,17 +21,20 @@
 import api from '../services/api';
 import NewsSearch from './NewsSearch';
 import NewsItem from './NewsItem';
+import Loading from './Loading';
 
 export default {
   data() {
     return {
       news: null,
+      loading: false,
       search: decodeURIComponent(this.$route.query.search)
     };
   },
   components: {
     NewsItem,
-    NewsSearch
+    NewsSearch,
+    Loading
   },
   created() {
     this.searchNews();
@@ -48,9 +54,14 @@ export default {
       this.searchNews();
     },
     searchNews() {
+      this.loading = true;
       api.getNews(this.search)
         .then(response => {
           this.news = response.articles;
+          this.loading = false;
+        }).catch(err => {
+          this.loading = false;
+          console.log(err);
         });
     },
   }
@@ -59,5 +70,12 @@ export default {
 </script>
 
 <style>
-
+.loader {
+  position: absolute;
+  top: 0; right: 0;
+  bottom: 0; left: 0;
+  color: white;
+  font-weight: bolder;
+  background: rgba(0, 0, 0, .6);
+}
 </style>
