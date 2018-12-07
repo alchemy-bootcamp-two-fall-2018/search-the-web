@@ -39,7 +39,7 @@ export default {
       articles: null,
       loading: false,
       error: null,
-      search: decodeURI(this.$route.query.search),
+      search: search ? decodeURIComponent(search) : '',
       page: decodeURIComponent(search),
       total: 0,
       perPage: 10
@@ -60,17 +60,17 @@ export default {
   // },
   watch: {
     $route(newRoute, oldRoute) {
-      const newSearch = newRoute.query.search;
+      const newSearch = newRoute.query.search || '';
       const oldSearch = oldRoute.query.search;
       // let newPage = newRoute.query.page;
       // const oldPage = oldRoute.query.page;
       // if(newSearch === oldSearch && newPage === oldPage) return;
       if(newSearch === oldSearch) return;
 
-      this.handleSearch(decodeURIComponent(newSearch));
+      this.search = decodeURIComponent(newSearch);
+      this.searchArticles();
     }
-  },
-   
+  }, 
   methods: {
     handleSearch(search) {
       this.search = search || '';
