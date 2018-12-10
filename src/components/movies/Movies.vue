@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <MovieSearch v-bind:onSearch="handleSearch" v-bind:search="search"/>
     <div class="results-list">
       <ul v-if="movies">
         <Movie v-for="(movie, i) in movies"
@@ -9,15 +11,18 @@
 
 
     </div>
+  </div>
 </template>
 
 <script>
 import api from '../../services/api';
 import Movie from './Movie';
+import MovieSearch from './MovieSearch.vue';
 
 export default {
   components: {
-    Movie
+    Movie,
+    MovieSearch
   },
   data() {
     return {
