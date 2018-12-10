@@ -12,11 +12,19 @@
 export default {
   props: {
     search: String,
+    onSearch: Function
   },
   data() {
     return {
       keyword: this.search || ''
     };
+  },
+  watch: {
+    search(newSearch) {
+      if(this.keyword !== newSearch) {
+        this.keyword = newSearch;
+      }
+    }
   },
   methods: {
     handleSubmit() {
@@ -25,13 +33,6 @@ export default {
           search: encodeURIComponent(this.keyword)
         }
       });
-    }
-  },
-  watch: {
-    search(newSearch) {
-      if(this.keyword !== newSearch) {
-        this.keyword = newSearch;
-      }
     }
   }
 };

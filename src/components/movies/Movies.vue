@@ -33,6 +33,13 @@ export default {
   created() {
     this.searchMovie();
   },
+  watch: {
+    $route(newRoute) {
+      const newSearch = newRoute.query.search;
+      this.search = decodeURIComponent(newSearch);
+      this.searchMovies();
+    }
+  },
   methods: {
     handleSearch(search) {
       this.search = search || '';
@@ -44,10 +51,12 @@ export default {
       api.getMovies(this.q)
         .then(response => {
           console.log('this proves we are getting api info', response);
-          this.movies = response.Search;  
-        }
-
-        );
+          this.movie = response.Search;  
+        })
+        .catch(err => {
+          this.error = err.message;
+          this.movie = null;
+        });
     }
       
   }

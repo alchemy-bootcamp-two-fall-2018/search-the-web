@@ -1,6 +1,7 @@
 <template>
-    <li>{{movie.Title}}
-    </li>
+    <RouterLink :to="`/movies/${movie.id}`">
+      {{movie.Title}}
+    </RouterLink>
     
 </template>
 
