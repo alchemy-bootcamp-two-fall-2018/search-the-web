@@ -8,8 +8,6 @@
           :movie="movie"
         />
       </ul>
-
-
     </div>
   </div>
 </template>
@@ -25,8 +23,10 @@ export default {
     MovieSearch
   },
   data() {
+    const search = this.$route.query.search;
     return {
-      movies: null
+      movies: null,
+      search: search ? decodeURIComponent(this.$route.query.search) : ''
     };
 
   },
@@ -34,8 +34,12 @@ export default {
     this.searchMovie();
   },
   methods: {
+    handleSearch(search) {
+      this.search = search || '';
+      this.searchMovies();
+    },
     searchMovie() {
-      //if(!this.q) return;
+      if(!this.q) return;
 
       api.getMovies(this.q)
         .then(response => {
