@@ -1,6 +1,7 @@
 <template>
     <div>
     <MovieSearch v-bind:onSearch="handleSearch" v-bind:search="search"/>
+<pre v-show="error" class="error">{{error}}</pre>
     <div class="results-list">
       <ul v-if="movies">
         <Movie v-for="(movie, i) in movies"
@@ -26,7 +27,8 @@ export default {
     const search = this.$route.query.search;
     return {
       movies: null,
-      search: search ? decodeURIComponent(this.$route.query.search) : ''
+      search: search ? decodeURIComponent(this.$route.query.search) : '',
+      error: null,
     };
 
   },
@@ -37,25 +39,26 @@ export default {
     $route(newRoute) {
       const newSearch = newRoute.query.search;
       this.search = decodeURIComponent(newSearch);
-      this.searchMovies();
+      this.searchMovie();
     }
   },
   methods: {
     handleSearch(search) {
       this.search = search || '';
-      this.searchMovies();
+      this.searchMovie();
     },
     searchMovie() {
-      if(!this.q) return;
+      // if(!this.q) return;
+      this.error = null;
 
-      api.getMovies(this.q)
+      api.getMovies(this.search)
         .then(response => {
-          console.log('this proves we are getting api info', response);
-          this.movie = response.Search;  
+          // console.log('this proves we are getting api info', response);
+          this.movies = response.Search;  
         })
-        .catch(err => {
-          this.error = err.message;
-          this.movie = null;
+        .catch(error => {
+          this.error = error.message;
+          this.movies = null;
         });
     }
       
@@ -65,5 +68,10 @@ export default {
 </script>
 
 <style>
-
+ul {
+  list-style-type: none;
+}
+.error {
+    color: red;
+}
 </style>
