@@ -1,7 +1,7 @@
 <template>
   <li>
-    <RouterLink :to="`/items/${item.id}`" >
-      {{item.name}}
+    <RouterLink :to="`/item/${item.id}`" >
+      {{item.name}} / {{item.title}}
     </RouterLink>
   </li>
 </template>

@@ -1,7 +1,6 @@
 <template>
   <section>
-    <h2>Welcome to ___________!</h2>
-    <!-- <router-link to="/people">search ________</router-link> -->
+    <h2>Welcome to search-the-web!</h2>
   </section>
 </template>
 
