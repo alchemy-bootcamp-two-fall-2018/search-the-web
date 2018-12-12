@@ -73,6 +73,7 @@ export default {
       this.search = decodeURIComponent(newSearch);
       this.page = newPage;
       this.searchArticles();
+      console.log(ArticleSearch);
     }
   },
   methods: {
