@@ -16,8 +16,10 @@ export default {
             keyword: this.search || ''
         };
     },
+    
     watch: {
         search(newSearch) {
+            console.log('step 2 new search from watch', newSearch);
             if(this.keyword !== newSearch) {
                 this.keyword = newSearch;
             }
@@ -25,6 +27,7 @@ export default {
     },
     methods: {
         handleSubmit() {
+            console.log('handle submit fires from articleSearch comp step 1', this.keyword);
             this.$router.push({
                 query: {
                     search: encodeURIComponent(this.keyword)

@@ -7,9 +7,7 @@
     <h3>
       Searching for {{ search }}
     </h3>
-    <p>
-        {{Article}}
-    </p>
+
     <div class="search-container">
       <ul v-if="articles">
         <Article v-for="(article, i) in articles"
@@ -28,7 +26,7 @@ import ArticleSearch from './ArticleSearch.vue';
 
 export default {
     data() {
-        let search = this.$route.query.search;
+        const search = this.$route.query.search;
         return {
             articles: null,
             search: search ? decodeURIComponent(search) : '',
@@ -36,30 +34,34 @@ export default {
     },
     components: {
         Article,
-        ArticleSearch,
+        ArticleSearch
     },
     created() {
         this.searchArticles();
+        console.log('BANANAS');
     },
     watch: {
         $route(newRoute, oldRoute) {
             const newSearch = newRoute.query.search;
             const oldSearch = oldRoute.query.search;
+            console.log('zxc');
             if(newSearch === oldSearch) return;
             this.search = decodeURIComponent(newSearch);
-            this.handleSearch(this.search);
+            this.searchArticles(this.search);
         }
     },
     methods: {
         handleSearch(search) {
+            console.log('something', this.search);
             this.search = search || '';
             this.searchArticles();
         },
         searchArticles() {
+            console.log('banana', this.search);
+            if(!this.search) return;
             api.getArticles(this.search)
                 .then(response => {
-                    console.log(response);
-                    this.articles = response.results;
+                    this.articles = response.articles;
                 });
         }
     }
