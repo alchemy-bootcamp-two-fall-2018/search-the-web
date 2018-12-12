@@ -1,15 +1,9 @@
 <template>
     <section>
         <h2>Search News-Api.org!</h2>
-        <RouterLink to="/articles">search articles</RouterLink>
+        <router-link to="/articles">search articles</router-link>
     </section>
 </template>
-
-<script>
-export default {
-
-};
-</script>
 
 <style>
 

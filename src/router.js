@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
-import Home from './components/Home.vue';
-import Articles from './components/Articles.vue';
+import Home from './components/home/Home.vue';
+import Articles from './components/article/Articles.vue';
 
 export default new VueRouter({
 
@@ -10,3 +10,4 @@ export default new VueRouter({
     { path: '*', redirect: '/' }
   ]
 });
+
