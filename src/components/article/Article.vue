@@ -8,9 +8,9 @@
 
 <script>
 export default {
-    props: {
-        article: Object
-    }
+  props: {
+    article: Object
+  }
 };
 </script>
   

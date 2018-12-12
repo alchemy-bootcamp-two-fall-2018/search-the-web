@@ -1,7 +1,7 @@
 <template>
     <section class="articles">
         <h2>Articles</h2>
-        <!--<button @click="searchArticles()">Get articles</button>-->
+        <button @click="searchArticles()">Get articles</button>-->
         <ArticlesSearch :onSearch="handleSearch" :search="search"/>
         <Loader :loading="loading"/>
 
