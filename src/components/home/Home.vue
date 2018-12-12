@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>Welcome to search-the-web!</h2>
+    <h2>search-the-web (Lab-06)</h2>
   </section>
 </template>
 
