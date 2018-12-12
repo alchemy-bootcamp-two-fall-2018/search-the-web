@@ -2,6 +2,7 @@
   <div id="app">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/news">News</RouterLink>
       </nav>
 
       <main>
