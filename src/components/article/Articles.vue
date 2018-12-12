@@ -49,7 +49,7 @@ export default {
   },
   components: {
     Article,
-    ArticleSearch,
+    // ArticleSearch,
     Loader
   },
   created() {
