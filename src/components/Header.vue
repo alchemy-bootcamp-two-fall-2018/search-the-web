@@ -7,7 +7,7 @@
        </h1>
         <nav>
             <RouterLink class="home" to="/"> Home</RouterLink>
-            <RouterLink class="Search" to="/SearchApp"> Search </RouterLink>
+            <RouterLink class="Search" to="/articles"> Search </RouterLink>
         </nav>
     </div>
 

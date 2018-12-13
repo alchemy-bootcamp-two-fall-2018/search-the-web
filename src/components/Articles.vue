@@ -7,10 +7,6 @@
     <h3>
       Searching for {{ search }}
     </h3>
-     
-    <pre v-show="error" class="error">
-      {{error}}
-    </pre>
 
     <div class="search-container">
       <ul v-if="articles">
@@ -18,67 +14,59 @@
           :key="i"
           :article="article"
         />
-        
       </ul>
     </div>
-
   </section>
 </template>
 
 <script>
-import api from '..api';
-import Article from './Article';
-import ArticleSearch from './SearchApp';
+import api from '../services/api';
+import Article from './Article.vue';
+import ArticleSearch from './ArticleSearch.vue';
+
 export default {
     data() {
-        let search = this.$route.query.search;
+        const search = this.$route.query.search;
         return {
             articles: null,
-            error: null,
             search: search ? decodeURIComponent(search) : '',
-            total: 0,
-            perPage: 10
         };
     },
     components: {
         Article,
-        ArticleSearch,
+        ArticleSearch
     },
     created() {
         this.searchArticles();
-    },
-    computed: {
-        totalPages() {
-            return Math.ceil(this.total / this.perPage);
-        }
+        console.log('BANANAS');
     },
     watch: {
         $route(newRoute, oldRoute) {
             const newSearch = newRoute.query.search;
             const oldSearch = oldRoute.query.search;
+            console.log('zxc');
             if(newSearch === oldSearch) return;
             this.search = decodeURIComponent(newSearch);
-            this.handleSearch(this.search);
+            this.searchArticles(this.search);
         }
     },
     methods: {
         handleSearch(search) {
+            console.log('something', this.search);
             this.search = search || '';
             this.searchArticles();
         },
         searchArticles() {
-            this.error = null;
+            console.log('banana', this.search);
+            if(!this.search) return;
             api.getArticles(this.search)
                 .then(response => {
-                    console.log(response);
                     this.articles = response.articles;
-                    this.total = response.count;
-                })
-                .catch(err => {
-                    this.error = err.message;
-                    this.articles = null;
                 });
         }
     }
 };
 </script>
+<style>
+
+</style>
